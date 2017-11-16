@@ -18,7 +18,8 @@ function crp() {
             ctx.drawImage(imageObj, 0, 0);
 
         };
-        imageObj.src = 'http://bipbap.ru/wp-content/uploads/2017/10/0_8eb56_842bba74_XL.jpg';
+        imageObj.setAttribute('crossOrigin', 'anonymous');
+        imageObj.src = `https://cors-anywhere.herokuapp.com/${prompt()}`;
 
         ctx.globalCompositeOperation = 'destination-over';
 
@@ -71,12 +72,11 @@ function crp() {
             condition = 0;
             $('.spot').each(function() {
                 $(this).remove();
-
             })
-            ctx.clearRect(0, 0, 217, 275);
+            ctx.clearRect(0, 0, 800, 800);
             ctx.beginPath();
-            ctx.width = 217;
-            ctx.height = 275;
+            ctx.width = 800;
+            ctx.height = 800;
             ctx.globalCompositeOperation = 'destination-over';
 
             setTimeout(function() {
@@ -96,6 +96,7 @@ function crp() {
                 ctx.fill();
 
                 var dataurl = canvas.toDataURL("image/png");
+                document.getElementById('myimg').src = dataurl;
             }, 20);
         });
     });
